@@ -4,10 +4,11 @@
 
 #define CARD_COUNT		52
 
-void Initialize(int  *Deck);
-void Shuffle(int  *Deck);
-void PlayBlackJack(int  *Deck);
-int PrintCard(int TrumpCard);
+void Initialize(int* Deck);
+void Shuffle(int* Deck);
+void PlayBlackJack(int* Deck);
+void PrintCard(int TrumpCard);
+int GetCardScore(int TrumpCard);
 
 using namespace std;
 
@@ -49,7 +50,7 @@ using namespace std;
 //	cout << endl;
 //}
 
-void Initialize(int*  Deck)
+void Initialize(int* Deck)
 {
 	for (int Index = 0; Index < CARD_COUNT; Index++)
 	{
@@ -57,7 +58,7 @@ void Initialize(int*  Deck)
 	}
 }
 
-void Shuffle(int*  Deck)
+void Shuffle(int* Deck)
 {
 	int temp = 0;
 	for (int Count = 0; Count < CARD_COUNT * 100; Count++)
@@ -70,7 +71,7 @@ void Shuffle(int*  Deck)
 	}
 }
 
-void PlayBlackJack(int*  Deck)
+void PlayBlackJack(int* Deck)
 {
 	int ComputerSum = 0;
 	int PlayerSum = 0;
@@ -90,9 +91,12 @@ void PlayBlackJack(int*  Deck)
 		if (turn % 2 == 0)
 		{
 			cout << "(Computer's Turn) ";
-			ComputerSum += PrintCard(Deck[Index]);
+			ComputerSum += GetCardScore(Deck[Index]);
+			PrintCard(Deck[Index]);
 			cout << ", ";
-			ComputerSum += PrintCard(Deck[Index + 1]);
+
+			ComputerSum += GetCardScore(Deck[Index + 1]);
+			PrintCard(Deck[Index + 1]);
 			cout << " => " << ComputerSum;
 			cout << endl;
 		}
@@ -100,9 +104,12 @@ void PlayBlackJack(int*  Deck)
 		else
 		{
 			cout << "(Player's Turn) ";
-			PlayerSum += PrintCard(Deck[Index]);
+			PlayerSum += GetCardScore(Deck[Index]);
+			PrintCard(Deck[Index]);
 			cout << ", ";
-			PlayerSum += PrintCard(Deck[Index + 1]);
+
+			PlayerSum += GetCardScore(Deck[Index + 1]);
+			PrintCard(Deck[Index + 1]);
 			cout << " => " << PlayerSum;
 			cout << endl;
 		}
@@ -140,7 +147,7 @@ void PlayBlackJack(int*  Deck)
 				break;
 			}
 		}
-		
+
 		Index += 2;
 		turn++;
 	}
@@ -149,13 +156,14 @@ void PlayBlackJack(int*  Deck)
 }
 
 // TrumpCard : (0 ~ 51)
-int PrintCard(int TrumpCard)
+void PrintCard(int TrumpCard)
 {
+	cout << " (" << TrumpCard << ")";
 	int shape = TrumpCard / 13;
-	
+
 	switch (shape)
 	{
-	case 0: 
+	case 0:
 		cout << "¢¼";
 		break;
 	case 1:
@@ -168,7 +176,7 @@ int PrintCard(int TrumpCard)
 		cout << "¢¾";
 		break;
 	}
-	
+
 	int Number = TrumpCard % 13 + 1;
 	if (Number == 1)
 	{
@@ -190,7 +198,14 @@ int PrintCard(int TrumpCard)
 	{
 		cout << Number;
 	}
+}
 
+int GetCardScore(int TrumpCard)
+{
+	int Number = TrumpCard % 13 + 1;
+	if (Number > 10) {
+		Number = 10;
+	}
 	return Number;
 }
 
