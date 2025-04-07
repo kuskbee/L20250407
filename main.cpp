@@ -4,21 +4,34 @@
 
 using namespace std;
 
+
 int main()
 {
 	srand((unsigned int)time(NULL));
-	set<int> selectedBalls;
+	int SelectedBalls[52] = { 0, };
 
-	for (int i = 0; i < 52; i++) {
+	for (int i = 0; i < 52; i++)
+	{
+		int Ball = rand() % 52 + 1;
 
-		int ball = rand() % 52 + 1;
-		while (selectedBalls.count(ball) > 0) {
-			ball = rand() % 52 + 1;
+		bool IsSame = false;
+		do
+		{
+			IsSame = false;
+			for (int j = 0; j < i; j++)
+			{
+				if (SelectedBalls[j] == Ball) {
+					IsSame = true;
+					Ball = rand() % 52 + 1;
+					break;
+				}
+			}
 		}
+		while(IsSame);
 
-		selectedBalls.insert(ball);
+		SelectedBalls[i] = Ball;
 
-		cout << "Selected " << ball << "." << endl << endl;
+		cout << "Selected " << Ball << "." << endl << endl;
 
 		cout << "Please Enter Any key. " << endl;
 
@@ -27,6 +40,11 @@ int main()
 	}
 
 	cout << "Finished" << endl;
+
+	for (int i = 0; i < 52; i++) {
+		cout << SelectedBalls[i] << " ";
+	}
+	cout << endl;
 
 	return 0;
 }
