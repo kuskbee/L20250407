@@ -53,7 +53,7 @@ void Initialize(int*  Deck)
 {
 	for (int Index = 0; Index < CARD_COUNT; Index++)
 	{
-		Deck[Index] = Index + 1;
+		Deck[Index] = Index;
 	}
 }
 
@@ -110,35 +110,37 @@ void PlayBlackJack(int*  Deck)
 		cout << "==================" << endl;
 
 		//Check
-		if (ComputerSum == 21) 
-		{
-			cout << "Computer's Win!!" << endl;
-			GameOver = true;
-			break;
-		}
-		else if (PlayerSum == 21)
-		{
-			cout << "Player's Win!!" << endl;
-			GameOver = true;
-			break;
-		}
-		else if (ComputerSum > 21 || PlayerSum > 21)
-		{
-			if (ComputerSum > 21 && PlayerSum > 21)
+		if (turn % 2 == 1) {
+			if (ComputerSum == 21)
 			{
-				cout << "公铰何" << endl;
+				cout << "Computer's Win!!" << endl;
+				GameOver = true;
+				break;
 			}
-			else if (ComputerSum > 21)
+			else if (PlayerSum == 21)
 			{
-				cout << "Computer Lose!!" << endl;
+				cout << "Player's Win!!" << endl;
+				GameOver = true;
+				break;
 			}
-			else
+			else if (ComputerSum > 21 || PlayerSum > 21)
 			{
-				cout << "Player Lose!!" << endl;
+				if (ComputerSum > 21 && PlayerSum > 21)
+				{
+					cout << "公铰何" << endl;
+				}
+				else if (ComputerSum > 21)
+				{
+					cout << "Computer Lose!!" << endl;
+				}
+				else
+				{
+					cout << "Player Lose!!" << endl;
+				}
+				break;
 			}
-			break;
 		}
-
+		
 		Index += 2;
 		turn++;
 	}
