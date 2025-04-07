@@ -5,42 +5,39 @@
 using namespace std;
 
 
+
 int main()
 {
 	srand((unsigned int)time(NULL));
+	int SelectedBallsSorted[52] = { 0, };
 	int SelectedBalls[52] = { 0, };
 
 	for (int i = 0; i < 52; i++)
 	{
-		int Ball = rand() % 52 + 1;
+		int Ball = rand() % 52;
 
 		bool IsSame = false;
-		do
-		{
-			IsSame = false;
-			for (int j = 0; j < i; j++)
-			{
-				if (SelectedBalls[j] == Ball) {
-					IsSame = true;
-					Ball = rand() % 52 + 1;
-					break;
-				}
-			}
+		while (SelectedBallsSorted[Ball] > 0) {
+			Ball = rand() % 52;
 		}
-		while(IsSame);
 
-		SelectedBalls[i] = Ball;
+		SelectedBallsSorted[Ball] = Ball + 1;
+		SelectedBalls[i] = Ball + 1;
 
 		cout << "Selected " << Ball << "." << endl << endl;
 
 		cout << "Please Enter Any key. " << endl;
 
-		_getch();
+		//_getch();
 
 	}
 
 	cout << "Finished" << endl;
 
+	for (int i = 0; i < 52; i++) {
+		cout << SelectedBallsSorted[i] << " ";
+	}
+	cout << endl;
 	for (int i = 0; i < 52; i++) {
 		cout << SelectedBalls[i] << " ";
 	}
