@@ -1,5 +1,4 @@
 #include <iostream>
-#include <set>
 #include <conio.h>
 
 using namespace std;
@@ -25,11 +24,6 @@ int main()
 		SelectedBalls[i] = Ball + 1;
 
 		cout << "Selected " << Ball << "." << endl << endl;
-
-		cout << "Please Enter Any key. " << endl;
-
-		//_getch();
-
 	}
 
 	cout << "Finished" << endl;
