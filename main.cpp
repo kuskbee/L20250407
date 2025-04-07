@@ -4,9 +4,9 @@
 
 #define CARD_COUNT		52
 
-void Initialize(int  Deck[CARD_COUNT]);
-void Shuffle(int  Deck[CARD_COUNT]);
-void Print(int  Deck[CARD_COUNT]);
+void Initialize(int  *Deck);
+void Shuffle(int  *Deck);
+void PlayBlackJack(int  *Deck);
 int PrintCard(int TrumpCard);
 
 using namespace std;
@@ -49,7 +49,7 @@ using namespace std;
 //	cout << endl;
 //}
 
-void Initialize(int  Deck[CARD_COUNT])
+void Initialize(int*  Deck)
 {
 	for (int Index = 0; Index < CARD_COUNT; Index++)
 	{
@@ -57,7 +57,7 @@ void Initialize(int  Deck[CARD_COUNT])
 	}
 }
 
-void Shuffle(int  Deck[CARD_COUNT])
+void Shuffle(int*  Deck)
 {
 	int temp = 0;
 	for (int Count = 0; Count < CARD_COUNT * 100; Count++)
@@ -70,7 +70,7 @@ void Shuffle(int  Deck[CARD_COUNT])
 	}
 }
 
-void Print(int  Deck[CARD_COUNT])
+void PlayBlackJack(int*  Deck)
 {
 	int ComputerSum = 0;
 	int PlayerSum = 0;
@@ -90,9 +90,9 @@ void Print(int  Deck[CARD_COUNT])
 		if (turn % 2 == 0)
 		{
 			cout << "(Computer's Turn) ";
-			ComputerSum += PrintCard(Index);
+			ComputerSum += PrintCard(Deck[Index]);
 			cout << ", ";
-			ComputerSum += PrintCard(Index + 1);
+			ComputerSum += PrintCard(Deck[Index + 1]);
 			cout << " => " << ComputerSum;
 			cout << endl;
 		}
@@ -100,9 +100,9 @@ void Print(int  Deck[CARD_COUNT])
 		else
 		{
 			cout << "(Player's Turn) ";
-			PlayerSum += PrintCard(Deck[2]);
+			PlayerSum += PrintCard(Deck[Index]);
 			cout << ", ";
-			PlayerSum += PrintCard(Deck[3]);
+			PlayerSum += PrintCard(Deck[Index + 1]);
 			cout << " => " << PlayerSum;
 			cout << endl;
 		}
@@ -192,7 +192,7 @@ int PrintCard(int TrumpCard)
 	return Number;
 }
 
-void SelectRandomBalls_Lecture()
+void BlackJack()
 {
 	srand((unsigned int)time(NULL));
 
@@ -200,7 +200,7 @@ void SelectRandomBalls_Lecture()
 
 	Initialize(Deck);
 	Shuffle(Deck);
-	Print(Deck);
+	PlayBlackJack(Deck);
 	return;
 }
 
@@ -218,7 +218,7 @@ int main()
 {
 	//SelectRandomBalls_Kusk();
 
-	SelectRandomBalls_Lecture();
+	BlackJack();
 
 	//cout << Add(10, 20) << endl;
 	//cout << Subtract(10, 20) << endl;
