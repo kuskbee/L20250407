@@ -80,7 +80,8 @@ void Print(int  Deck[CARD_COUNT])
 	bool GameOver = false;
 	while (true)
 	{
-		if (Index + 1 > 52) {
+		if (Index + 1 > 52)
+		{
 			cout << "Game Over" << endl;
 			break;
 		}
@@ -123,13 +124,16 @@ void Print(int  Deck[CARD_COUNT])
 		}
 		else if (ComputerSum > 21 || PlayerSum > 21)
 		{
-			if (ComputerSum > 21 && PlayerSum > 21) {
+			if (ComputerSum > 21 && PlayerSum > 21)
+			{
 				cout << "¹«½ÂºÎ" << endl;
 			}
-			else if (ComputerSum > 21) {
+			else if (ComputerSum > 21)
+			{
 				cout << "Computer Lose!!" << endl;
 			}
-			else {
+			else
+			{
 				cout << "Player Lose!!" << endl;
 			}
 			break;
@@ -143,10 +147,12 @@ void Print(int  Deck[CARD_COUNT])
 }
 
 // TrumpCard : (0 ~ 51)
-int PrintCard(int TrumpCard) {
+int PrintCard(int TrumpCard)
+{
 	int shape = TrumpCard / 13;
 	
-	switch (shape) {
+	switch (shape)
+	{
 	case 0: 
 		cout << "¢¼";
 		break;
@@ -162,19 +168,24 @@ int PrintCard(int TrumpCard) {
 	}
 	
 	int Number = TrumpCard % 13 + 1;
-	if (Number == 1) {
+	if (Number == 1)
+	{
 		cout << 'A';
 	}
-	else if (Number == 11) {
+	else if (Number == 11)
+	{
 		cout << "J";
 	}
-	else if (Number == 12) {
+	else if (Number == 12)
+	{
 		cout << "Q";
 	}
-	else if (Number == 13) {
+	else if (Number == 13)
+	{
 		cout << "K";
 	}
-	else {
+	else
+	{
 		cout << Number;
 	}
 
@@ -193,11 +204,13 @@ void SelectRandomBalls_Lecture()
 	return;
 }
 
-int Add(int A, int B) {
+int Add(int A, int B)
+{
 	return A + B;
 }
 
-int Subtract(int A, int B) {
+int Subtract(int A, int B)
+{
 	return A - B;
 }
 
